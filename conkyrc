@@ -25,7 +25,7 @@ own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
 border_inner_margin 0
 border_outer_margin 5
 
-minimum_size 580 800
+minimum_size 470 800
 maximum_width 1000
 
 alignment top_right
@@ -36,7 +36,7 @@ gap_y 100
 draw_shades no
 draw_outline no
 draw_borders no
-draw_graph_borders yes
+draw_graph_borders no
 
 # Text settings #
 use_xft yes
@@ -60,72 +60,78 @@ TEXT
 #----------------------------------------------------------------------------------------------------------------------------------------
 #					         Battery Circle 
 #----------------------------------------------------------------------------------------------------------------------------------------
-${font caviar dreams:size=8}${goto 10}${voffset 0}${color 0ABFFF}Uptime: ${color}${uptime_short}
-${color 0ABFFF}${goto 450}${voffset -23}Battery : ${color FFFFFF}${voffset 0}${battery_percent}%
+${font caviar dreams:size=8}${goto 10}${voffset 0}${color 1abc9c}Uptime: ${color}${uptime_short} ${goto 193}${color #1abc9c}Temp: $color ${acpitemp}°C  ${color 1abc9c}
+${alignr 10}${voffset -23}Battery : ${color FFFFFF}${voffset 0}${battery_percent}%
 #----------------------------------------------------------------------------------------------------------------------------------------
 #					           CPU usage 
 #----------------------------------------------------------------------------------------------------------------------------------------
-${color #0ABFFF}${hr 1}$color
-${goto 20}${voffset 50}${cpu cpu0}% ${color 0ABFFF}${goto 9}${voffset 20}CPU0 $color
-${goto 201}${voffset -45}${cpu cpu1}% ${color 0ABFFF}${goto 190}${voffset 20}CPU1 $color
-${goto 371}${voffset -45}${cpu cpu2}% ${color 0ABFFF}${goto 360}${voffset 20}CPU2 $color
-${goto 20}${voffset 50}${cpu cpu3}% ${color 0ABFFF}${goto 9}${voffset 20}CPU3 $color
-${goto 201}${voffset -45}${cpu cpu4}% ${color 0ABFFF}${goto 190}${voffset 20}CPU4 $color
-${goto 371}${voffset -45}${cpu cpu5}% ${color 0ABFFF}${goto 360}${voffset 20}CPU5 $color
+${color #1abc9c}${hr 1}$color
 
-#${goto 340}${voffset -25}${cpu cpu6}% ${color 0ABFFF}${goto 340}${voffset 20}CPU6 $color
-#${goto 505}${voffset -25}${cpu cpu7}% ${color 0ABFFF}${goto 505}${voffset 20}CPU7 $color
-${voffset 10}${color #0ABFFF}Temp: $color ${acpitemp}°C  ${goto 300}${color #0ABFFF}Freq:$color ${freq_g cpu0}GHz
-#${color #0ABFFF}Processes:$color $processes ${goto 300}${color #0ABFFF}Running proc: $color  $running_processes 
-#${color #0ABFFF}Load:$color ${loadavg}
+${goto 20}${voffset 50}${cpu cpu1}% ${color 1abc9c}${goto 9}${voffset 20}CPU0 $color
+${goto 201}${voffset -45}${cpu cpu2}% ${color 1abc9c}${goto 190}${voffset 20}CPU1 $color
+${goto 371}${voffset -45}${cpu cpu3}% ${color 1abc9c}${goto 360}${voffset 20}CPU2 $color
+${goto 20}${voffset 55}${cpu cpu4}% ${color 1abc9c}${goto 9}${voffset 20}CPU3 $color
+${goto 201}${voffset -45}${cpu cpu5}% ${color 1abc9c}${goto 190}${voffset 20}CPU4 $color
+${goto 371}${voffset -45}${cpu cpu6}% ${color 1abc9c}${goto 360}${voffset 20}CPU5 $color
+#${goto 340}${voffset -25}${cpu cpu6}% ${color 1abc9c}${goto 340}${voffset 20}CPU6 $color
+#${goto 505}${voffset -25}${cpu cpu7}% ${color 1abc9c}${goto 505}${voffset 20}CPU7 $color
+${alignr}${font sans-serif:normal:size=8}${cpugraph cpu0 40,300}
+${voffset -40}${color #1abc9c}Freq:$color ${freq_g cpu0}GHz
+#${color #1abc9c}Processes:$color $processes ${goto 300}${color #1abc9c}Running proc: $color  $running_processes 
+#${color #1abc9c}Load:$color ${loadavg}
 #----------------------------------------------------------------------------------------------------------------------------------------
 #						Network
 #----------------------------------------------------------------------------------------------------------------------------------------
-${color 0ABFFF}${voffset 2}${hr 1}
-${color 0ABFFF}${voffset 5}Hostname: $color$alignr$nodename
-${color 0ABFFF}wlp0s20f3: $color$alignr${addr wlp0s20f3}
-${color 0ABFFF}enp0s31f6: $color$alignr${addr eth0}
-#${color 0ABFFF}Current: $color${alignr}${execi 10 /sbin/iwconfig wlp0s20f3|grep Rate|cut -d"M" -f1|cut -b20-24} Mbits/sec
+${color 1abc9c}${voffset 2}${hr 1}
+${color 1abc9c}${voffset 5}Network hostname: $color$alignr$nodename
 
-${color #0ABFFF}Down: $color${downspeed wlp0s20f3} k/s ${alignr}${color #0ABFFF}Up:$color ${upspeed wlp0s20f3} k/s
-${downspeedgraph wlp0s20f3 30,120 000000 0ABFFF} ${alignr}${upspeedgraph wlan0 30,120 000000 0ABFFF}$color
-${color #0ABFFF}Total:$color ${totaldown wlp0s20f3} ${alignr}${color #0ABFFF}Total:$color ${totalup wlp0s20f3}
+${color 1abc9c}wlp0s20f3: $color$alignr${addr wlp0s20f3}
+#${color 1abc9c}Current: $color${alignr}${execi 10 /sbin/iwconfig wlp0s20f3|grep Rate|cut -d"M" -f1|cut -b20-24} Mbits/sec
+${goto 50}${color #1abc9c}Down: $color${downspeed wlp0s20f3} k/s ${alignr}${color #1abc9c}Up:$color ${upspeed wlp0s20f3} k/s
+${goto 50}${downspeedgraph wlp0s20f3 20,130 000000 1abc9c} ${alignr 5}${upspeedgraph wlp0s20f3 20,120 000000 1abc9c}$color
+${goto 50}${color #1abc9c}Total:$color ${totaldown wlp0s20f3} ${alignr}${color #1abc9c}Total:$color ${totalup wlp0s20f3}
+
+${color 1abc9c}enp0s31f6: $color$alignr${addr enp0s31f6}
+${goto 50}${color #1abc9c}Down: $color${downspeed enp0s31f6} k/s ${alignr}${color #1abc9c}Up:$color ${upspeed enp0s31f6} k/s
+${goto 50}${downspeedgraph enp0s31f6 20,130 000000 1abc9c} ${alignr 5}${upspeedgraph enp0s31f6 20,120 000000 1abc9c}$color
+${goto 50}${color #1abc9c}Total:$color ${totaldown enp0s31f6} ${alignr}${color #1abc9c}Total:$color ${totalup enp0s31f6}
+
 #----------------------------------------------------------------------------------------------------------------------------------------
 #					DISK/RAM/SWAP usage
 #----------------------------------------------------------------------------------------------------------------------------------------
-${color 0ABFFF}${voffset 2}${hr 1}
-${color FFFFFF}${goto 150}${voffset 40}${fs_used_perc /}%
-${color 0ABFFF}${goto 150}DISK
-${color FFFFFF}${goto 400}${voffset -50}${memperc}%
-${color 0ABFFF}${goto 400}RAM
+${color 1abc9c}${voffset 2}${hr 1}
+${color FFFFFF}${goto 120}${voffset 40}${fs_used_perc /}%
+${color 1abc9c}${goto 121}DISK
+${color FFFFFF}${goto 325}${voffset -50}${memperc}%
+${color 1abc9c}${goto 318}RAM
 #${color FFFFFF}${goto 192}${voffset -26}${swapperc}%
-#${color 0ABFFF}${goto 191}SWAP
+#${color 1abc9c}${goto 191}SWAP
 #----------------------------------------------------------------------------------------------------------------------------------------
 #					   Running processes
 #----------------------------------------------------------------------------------------------------------------------------------------
-${color 0ABFFF}${voffset 2} ${hr 1}
-${color #0ABFFF}${voffset 5}NAME${goto 210}PID${goto 350}CPU%${goto 510}MEM%$color${voffset 5}
-${top name 1}${goto 195}${top pid 1}${goto 344}${top cpu 1}${goto 505}${top mem 1}
-${top name 2}${goto 195}${top pid 2}${goto 344}${top cpu 2}${goto 505}${top mem 2}
-${top name 3}${goto 195}${top pid 3}${goto 344}${top cpu 3}${goto 505}${top mem 3}
-${top name 4}${goto 195}${top pid 4}${goto 344}${top cpu 4}${goto 505}${top mem 4}
-${top name 5}${goto 195}${top pid 5}${goto 344}${top cpu 5}${goto 505}${top mem 5}
-#${top name 6}${goto 195}${top pid 6}${goto 344}${top cpu 6}${goto 505}${top mem 6}
-#${top name 7}${goto 195}${top pid 7}${goto 344}${top cpu 7}${goto 505}${top mem 7}
-#${top name 8}${goto 195}${top pid 8}${goto 344}${top cpu 8}${goto 505}${top mem 8}
-#${top name 9}${goto 195}${top pid 9}${goto 344}${top cpu 9}${goto 505}${top mem 9}
-#${top name 10}${goto 195}${top pid 10}${goto 344}${top cpu 10}${goto 505}${top mem 10}
+${color 1abc9c}${voffset 2} ${hr 1}
+${color #1abc9c}${voffset 5}NAME${goto 215}PID${goto 300}CPU%${goto 405}MEM%$color${voffset 5}
+${top name 1}${goto 195}${top pid 1}${goto 295}${top cpu 1}${goto 400}${top mem 1}
+${top name 2}${goto 195}${top pid 2}${goto 295}${top cpu 2}${goto 400}${top mem 2}
+${top name 3}${goto 195}${top pid 3}${goto 295}${top cpu 3}${goto 400}${top mem 3}
+${top name 4}${goto 195}${top pid 4}${goto 295}${top cpu 4}${goto 400}${top mem 4}
+${top name 5}${goto 195}${top pid 5}${goto 295}${top cpu 5}${goto 400}${top mem 5}
+#${top name 6}${goto 195}${top pid 6}${goto 295}${top cpu 6}${goto 400}${top mem 6}
+#${top name 7}${goto 195}${top pid 7}${goto 295}${top cpu 7}${goto 400}${top mem 7}
+#${top name 8}${goto 195}${top pid 8}${goto 295}${top cpu 8}${goto 400}${top mem 8}
+#${top name 9}${goto 195}${top pid 9}${goto 295}${top cpu 9}${goto 400}${top mem 9}
+#${top name 10}${goto 195}${top pid 10}${goto 295}${top cpu 10}${goto 400}${top mem 10}
 #----------------------------------------------------------------------------------------------------------------------------------------
 #					     Computer info
 #----------------------------------------------------------------------------------------------------------------------------------------
-${color 0ABFFF}${voffset 2}${hr 1}${voffset 5}
-${color 0ABFFF}Hostname:$color${alignr}${nodename}
-#${color 0ABFFF}OS:$color${alignr}${pre_exec cat /etc/issue.net} $machine
-${color 0ABFFF}Kernel:$color${alignr}${kernel}$color
+${color 1abc9c}${voffset 2}${hr 1}${voffset 5}
+${color 1abc9c}Hostname:$color${alignr 10}${nodename}
+#${color 1abc9c}OS:$color${alignr}${pre_exec cat /etc/issue.net} $machine
+${color 1abc9c}Kernel:$color${alignr 10}${kernel}$color
 #----------------------------------------------------------------------------------------------------------------------------------------
 #						Logging
 #----------------------------------------------------------------------------------------------------------------------------------------
-#${color 0ABFFF}${voffset 2}${hr 1}$color
-#${color 0ABFFF}${alignc}SYSLOG:$color
-#${color 0ABFFF}${voffset -5}${hr 1}$color
+#${color 1abc9c}${voffset 2}${hr 1}$color
+#${color 1abc9c}${alignc}SYSLOG:$color
+#${color 1abc9c}${voffset -5}${hr 1}$color
 #${voffset 5}${execi 10 tail -n8 /var/log/syslog | awk '{print " ",$5,$6,$7,$8,$9,$10}' | fold -w60}
